@@ -18,7 +18,8 @@ const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 const BranchForm = () => (
-  <Form justify="center"
+  <div justify="center">
+  <Form 
     name="basic"
     labelCol={{
       span: 8,
@@ -99,5 +100,6 @@ const BranchForm = () => (
       </Button>
     </Form.Item>
   </Form>
+  </div>
 );
 export default BranchForm;

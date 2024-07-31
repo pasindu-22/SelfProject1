@@ -9,6 +9,7 @@ import Home from './components/Home';
 import AdminForm from './Forms/AdminForm';
 import BranchForm from './Forms/BranchForm';
 import ManagerList from './Lists/ManagerList';
+import BranchList from './Lists/BranchList';
 
 
 
@@ -34,13 +35,12 @@ function Content() {
     <Routes>
       <Route path="/" element={Home}></Route>
       <Route path="/dashboard" element={<div>Dashboard</div>}></Route>
-      <Route path="/active" element={<div>Active</div>}></Route>
-      <Route path="/inactive" element={<div>Inactive</div>}></Route>
       <Route path="/profile" element={<div>Profile</div>}></Route>
       <Route path="/signout" element={<div>Signout</div>}></Route>
       <Route path="/new/manager" element={<AdminForm/>}></Route>
       <Route path="/new/branch" element={<BranchForm/>}></Route>
       <Route path="/management/managers" element={<ManagerList/>}></Route>
+      <Route path="/management/branches" element={<BranchList/>}></Route>
     </Routes>
   </div> 
 }

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Admin, Role, Branch } = require('../models');
 
+
 // Register a new admin
 exports.register = async (req, res) => {
     try {
@@ -15,6 +16,7 @@ exports.register = async (req, res) => {
     }
   };
   
+
 // Log in an admin
 exports.login = async (req, res) => {
   try {
@@ -56,6 +58,7 @@ exports.createAdmin = async (req, res) => {
   }
 };
 
+
 // Get all managers
 exports.managers = async (req, res) => {
   try {
@@ -67,6 +70,16 @@ exports.managers = async (req, res) => {
   }
 };
 
+// Get all branches
+exports.branches = async (req, res) => {
+  try {
+    const branches = await Branch.findAll();
+    res.json(branches);
+    console.log("branches"); 
+  } catch (error) {
+    res.status(500).json({ error: 'Error recieving' });
+  }
+};
 
 // Create a new branch
 exports.createBranch = async (req, res) => {
