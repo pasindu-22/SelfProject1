@@ -9,7 +9,7 @@ function Footer() {
       alignItems:"center",
       fontWeight:"soft"
     }}
-    >Site Insights</div>;
+    >Site Insights Portal</div>;
   }
 
 export default Footer;
