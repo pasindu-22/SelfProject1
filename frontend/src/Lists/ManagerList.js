@@ -33,6 +33,20 @@ const columns = [
             target: 'full-header',
         },
     },
+    {
+        title: 'Member Since',
+        dataIndex: 'createdAt',
+        showSorterTooltip: {
+            target: 'full-header',
+        },
+    },
+    {
+        title: 'Last Updated',
+        dataIndex: 'updatedAt',
+        showSorterTooltip: {
+            target: 'full-header',
+        },
+    },
 ];
 
 const ManagerList = () => {

@@ -1,13 +1,24 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-const onFinish = (values) => {
+import axios from 'axios';
+
+
+const onFinish = async(values) => {
   console.log('Success:', values);
+  try {
+    const response = await axios.post('http://localhost:5000/api/admins/createBranch',  values );
+    console.log(response.data);
+    alert('Branch created successfully!');
+  } catch (error) {
+    console.error('There was an error creating the user!', error);
+    alert('Failed to create user');
+  }
 };
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 const BranchForm = () => (
-  <Form
+  <Form justify="center"
     name="basic"
     labelCol={{
       span: 8,
@@ -26,12 +37,12 @@ const BranchForm = () => (
     autoComplete="off"
   >
     <Form.Item
-      label="Username"
-      name="username"
+      label="Name"
+      name="name"
       rules={[
         {
           required: true,
-          message: 'Please input your username!',
+          message: 'Please input your name!',
         },
       ]}
     >
@@ -39,8 +50,8 @@ const BranchForm = () => (
     </Form.Item>
 
     <Form.Item
-      label="Password"
-      name="password"
+      label="Location"
+      name="location"
       rules={[
         {
           required: true,
@@ -48,19 +59,34 @@ const BranchForm = () => (
         },
       ]}
     >
-      <Input.Password />
+      <Input />
     </Form.Item>
 
-    {/* <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
+    <Form.Item
+      label="Contact"
+      name="contact_info"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your contact!',
+        },
+      ]}
     >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item> */}
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      label="Admin ID"
+      name="admin_id"
+      rules={[
+        {
+          required: true,
+          message: 'Enter admin id',
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>
 
     <Form.Item
       wrapperCol={{

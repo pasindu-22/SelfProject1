@@ -1,7 +1,7 @@
 // backend/controllers/adminController.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Admin, Role } = require('../models');
+const { Admin, Role, Branch } = require('../models');
 
 // Register a new admin
 exports.register = async (req, res) => {
@@ -65,4 +65,31 @@ exports.managers = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error recieving' });
   }
+};
+
+
+// Create a new branch
+exports.createBranch = async (req, res) => {
+  try {
+    const { name, location, contact_info, admin_id } = req.body;
+
+    console.log(req.body);
+    // Find or create the role
+    const [admin, created] = await Admin.findOrCreate({
+      where: { id: admin_id },
+    });
+
+    // Create branch
+    const branch = await Branch.create({
+      name,
+      location,
+      contact_info,
+      admin_id: admin.id,
+    });
+
+    res.status(201).json(branch);
+  } catch (error) {
+    console.error('Error creating branch:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  } 
 };
