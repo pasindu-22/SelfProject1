@@ -1,0 +1,4 @@
+npx create-react-app my-ant-design-app
+cd my-ant-design-app
+
+npm install antd
