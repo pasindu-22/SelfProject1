@@ -7,6 +7,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import AdminForm from './Forms/AdminForm';
+import BranchForm from './Forms/BranchForm';
+import ManagerList from './Lists/ManagerList';
 
 
 
@@ -36,7 +38,9 @@ function Content() {
       <Route path="/inactive" element={<div>Inactive</div>}></Route>
       <Route path="/profile" element={<div>Profile</div>}></Route>
       <Route path="/signout" element={<div>Signout</div>}></Route>
-      <Route path="/admin/new" element={<AdminForm/>}></Route>
+      <Route path="/new/manager" element={<AdminForm/>}></Route>
+      <Route path="/new/branch" element={<BranchForm/>}></Route>
+      <Route path="/management/managers" element={<ManagerList/>}></Route>
     </Routes>
   </div> 
 }

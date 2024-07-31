@@ -8,6 +8,7 @@ import {
   UnorderedListOutlined,
   UserOutlined,
   PoweroffOutlined,
+  ProductOutlined ,
 } from "@ant-design/icons/lib/icons";
 
 function SideMenu() {
@@ -31,17 +32,21 @@ function SideMenu() {
             key:"/dashboard", 
             icon: <DashboardOutlined/>},
           {
-            label:"Users List",
-            key:"/userlist", 
+            label:"Management",
+            key:"/management", 
             icon: <UnorderedListOutlined/>,
             children: [
-            {label: "Active Users", key:"/active"},
-            {label: "Inactive Users", key:"/inactive"},
+            {label: "Managers", key:"/management/managers"},
+            {label: "Branches", key:"/management/branches"},
           ]},
           {
-            label:"New Admin",
-            key:"/admin/new", 
-            icon: <UserOutlined/>},
+              label:"New",
+              key:"/new", 
+              icon: <ProductOutlined />,
+              children: [
+              {label: "Manager", key:"/new/manager"},
+              {label: "Branch", key:"/new/branch"},
+          ]},
           {
             label:"Signout",
             key:"/signout", 

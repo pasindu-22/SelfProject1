@@ -56,4 +56,13 @@ exports.createAdmin = async (req, res) => {
   }
 };
 
-
+// Get all managers
+exports.managers = async (req, res) => {
+  try {
+    const managers = await Admin.findAll();
+    res.json(managers);
+    console.log("managers");
+  } catch (error) {
+    res.status(500).json({ error: 'Error recieving' });
+  }
+};
