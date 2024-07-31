@@ -9,6 +9,7 @@ const AdminForm = () => {
   const [password, setPassword] = useState('');
   const [role_name, setRole] = useState('');
 
+  // Create a new admin
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
