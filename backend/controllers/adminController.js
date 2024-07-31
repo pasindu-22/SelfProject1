@@ -75,7 +75,6 @@ exports.branches = async (req, res) => {
   try {
     const branches = await Branch.findAll();
     res.json(branches);
-    console.log("branches"); 
   } catch (error) {
     res.status(500).json({ error: 'Error recieving' });
   }

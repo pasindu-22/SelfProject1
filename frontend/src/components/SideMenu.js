@@ -6,7 +6,6 @@ import {
   DashboardOutlined,
   HomeOutlined,
   UnorderedListOutlined,
-  UserOutlined,
   PoweroffOutlined,
   ProductOutlined ,
 } from "@ant-design/icons/lib/icons";
@@ -25,7 +24,8 @@ function SideMenu() {
         defaultSelectedKeys={[window.location.pathname]}  //prop to set the default selected menu item
         items={[
           {
-            label:"Home",key:"/", 
+            label:"Home",
+            key:"/", 
             icon: <HomeOutlined/>},
           {
             label:"Dashboard",
