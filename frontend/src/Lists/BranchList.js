@@ -76,6 +76,7 @@ const BranchList = () => {
     };
 
     return (
+        <div style={{display:"flex",flexDirection:"row",flex:3, height:"10vh", width:"auto", background:"#b7defb"}}>
         <Table size='large'
             columns={columns}
             dataSource={data}
@@ -85,6 +86,7 @@ const BranchList = () => {
                 target: 'sorter-icon',
             }}
         />
+        </div>
     );
 };
 

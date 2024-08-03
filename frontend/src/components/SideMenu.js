@@ -25,7 +25,7 @@ function SideMenu() {
         items={[
           {
             label:"Home",
-            key:"/", 
+            key:"/home", 
             icon: <HomeOutlined/>},
           {
             label:"Dashboard",
@@ -46,10 +46,11 @@ function SideMenu() {
               children: [
               {label: "Manager", key:"/new/manager"},
               {label: "Branch", key:"/new/branch"},
+              {label: "Customer", key:"/new/customer"},
           ]},
           {
             label:"Signout",
-            key:"/signout", 
+            key:"/", 
             icon: <PoweroffOutlined/>, 
             danger: true},
         ]}>

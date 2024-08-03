@@ -9,5 +9,6 @@ router.post('/createAdmin',adminController.createAdmin);
 router.get('/managers',adminController.managers);
 router.get('/branches',adminController.branches);
 router.post('/createBranch',adminController.createBranch);
+router.post('/login',adminController.login);
 
 module.exports = router;

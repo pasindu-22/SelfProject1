@@ -10,6 +10,8 @@ import AdminForm from './Forms/AdminForm';
 import BranchForm from './Forms/BranchForm';
 import ManagerList from './Lists/ManagerList';
 import BranchList from './Lists/BranchList';
+import LoginForm from './Forms/LoginForm';
+import CustomerForm from './Forms/CustomerForm';
 
 
 
@@ -27,18 +29,20 @@ function App() {
     
   );
 }
-
+ 
 
 // define routes
 function Content() {
   return <div>  
     <Routes>
-      <Route path="/" element={Home}></Route>
+      <Route path="/login" element={LoginForm}></Route>
+      <Route path="/home" element={<Home/>}></Route>
       <Route path="/dashboard" element={<div>Dashboard</div>}></Route>
       <Route path="/profile" element={<div>Profile</div>}></Route>
       <Route path="/signout" element={<div>Signout</div>}></Route>
       <Route path="/new/manager" element={<AdminForm/>}></Route>
       <Route path="/new/branch" element={<BranchForm/>}></Route>
+      <Route path="/new/customer" element={<CustomerForm/>}></Route>
       <Route path="/management/managers" element={<ManagerList/>}></Route>
       <Route path="/management/branches" element={<BranchList/>}></Route>
     </Routes>

@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 const { sequelize } = require('./models'); // Import sequelize instance from models folder
 
 dotenv.config();
-
+ 
 const app = express();
 
 app.use(cors());
@@ -24,10 +24,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/admins', adminRoutes);
 
-// Example route
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+
 
 
 

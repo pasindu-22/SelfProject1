@@ -38,6 +38,8 @@ Revenue.belongsTo(Branch, { foreignKey: 'branch_id' });
 
 Role.hasMany(Admin, { foreignKey: 'role_id' });
 Admin.belongsTo(Role, { foreignKey: 'role_id' });
+
+
 module.exports = {
   Admin,
   Branch,
