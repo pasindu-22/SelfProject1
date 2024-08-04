@@ -17,6 +17,7 @@ function SideMenu() {
         onClick={({key})=> {
           if (key === "signout") {
             // ToDo: implement signout logic
+            // alert("Signing out", key);
           } else {
             navigate(key);
           }

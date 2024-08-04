@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
+// import {jwtDecode} from 'jwt-decode';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -11,11 +12,19 @@ const LoginForm = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/admins/login', values);
       console.log(response.data);
-      
-      if (response.data.success) { // Assuming the response contains a 'success' field indicating the result
-        navigate('/home'); // Redirect to home page
+
+      if (response.data.success) {
+        // Store the token in local storage
+        localStorage.setItem('token', response.data.token);
+        
+        // Redirect based on user role
+        if (response.data.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/home');
+        }
       } else {
-        alert('Validation failed: ' + response.data.message); // Show the error message from the server
+        alert('Validation failed: ' + response.data.message);
       }
     } catch (error) {
       console.error('There was an error validating admin!', error);
@@ -26,6 +35,33 @@ const LoginForm = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  // useEffect(() => {
+  //   const checkTokenExpiration = () => {
+  //     const token = localStorage.getItem('token');
+  //     if (token) {
+  //       const decodedToken = jwtDecode(token);
+  //       const currentTime = Date.now() / 1000;
+
+  //       if (decodedToken.exp < currentTime) {
+  //         // Token has expired
+  //         console.log('Token has expired');
+  //         localStorage.removeItem('token');
+  //         alert('Session has expired. Please log in again.');
+  //         navigate('/login');
+  //       }
+  //     }
+  //   };
+
+  //   // Check token expiration immediately
+  //   checkTokenExpiration();
+
+  //   // Set up an interval to check token expiration every minute
+  //   const intervalId = setInterval(checkTokenExpiration, 60000);
+
+  //   // Clear the interval on component unmount
+  //   return () => clearInterval(intervalId);
+  // }, [navigate]);
 
   return (
     <div style={{display:"flex",flexDirection:"row",flex:1, height:"100vh", background:"#b7defb"}}>

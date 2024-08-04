@@ -5,7 +5,7 @@ const { Admin, Role, Branch } = require('../models');
 
 
 // Register a new admin
-exports.register = async (req, res) => {
+exports.createAdmin = async (req, res) => {
     try {
       const { name, email, password, role_id } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,45 +27,28 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    if (password === admin.password) {
-      console.log(admin.dataValues);
-      return res.json({ success: true });
-    } else {
+    // Use bcrypt to compare passwords
+    
+    const passwordIsValid = bcrypt.compareSync(password, admin.password);
+    console.log(password, admin.password,passwordIsValid);
+    if (!passwordIsValid) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    const token = jwt.sign({ id: admin.admin_id, role: admin.role_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: admin.admin_id, role: admin.role_id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1m' }
+    );
+
+    return res.json({ success: true, token });
   } catch (error) {
-    res.status(500).json({ error: 'Error logging in' });
+    console.error('Error logging in:', error);
+    return res.status(500).json({ error: 'Error logging in' });
   }
 };
 
-
-// Create a new admin
-exports.createAdmin = async (req, res) => {
-  try {
-    const { name, email, password, role_name } = req.body;
-
-    // Find or create the role
-    const [role, created] = await Role.findOrCreate({
-      where: { role_name },
-    });
-
-    // Create admin
-    const admin = await Admin.create({
-      name,
-      email,
-      password,
-      role_id: role.id,
-    });
-
-    res.status(201).json(admin);
-  } catch (error) {
-    console.error('Error creating admin:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
 
 
 // Get all managers
